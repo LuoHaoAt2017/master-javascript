@@ -11,19 +11,21 @@ util.inherits(Clock, EventEmitter);
 
 var clock = new Clock();
 
+//======================================================
+
 //模拟网络HTTP请求和回调函数的处理，如果网络请求超时，那么取消回调。
-function request(remoteCall, backCall) {
+function request(url, backCall) {
   /**
    * 精巧的设计，直到网络请求返回数据才调用回调函数。
    */
-  remoteCall();
+  remoteCall(url);
   clock.on('callback', function(err, res) {
     backCall(err, res);
   });
 }
 
-function remoteCall() {
-  console.log('Request data from server.');
+function remoteCall(url) {
+  console.log('Request data from server ', url);
   setTimeout(function() {
     var err = null;
     var res = 1;
@@ -31,16 +33,14 @@ function remoteCall() {
   }, 1000);
 }
 
-function backCall(err, res) {
+request('http://localhost:8080/', function(err, res) {
   console.log('Get response from sever.');
   if (err) {
     console.log('error', err);
   } else {
     console.log('res', res);
   }
-}
-
-request(remoteCall, backCall);
+});
 
 /**
  * 模拟网络请求  ===> 十分重要的大作业
