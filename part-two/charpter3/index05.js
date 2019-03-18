@@ -6,21 +6,8 @@
  * 如何知道第一部分何时结束。这就要联想到事件监听机制。
  */
 var util = require('util');
+
 var EventEmitter = require('events').EventEmitter;
-
-function SelfPromise(callback) {
-  callback.call(this, success, failure);
-}
-
-SelfPromise.prototype.resolved = function(result) {
-  this.emit('resolved', result);
-}
-
-SelfPromise.prototype.rejected = function(error) {
-  this.emit('rejected', error);
-}
-
-util.inherits(SelfPromise, EventEmitter);
 
 function success(value) {
   this.resolved(value);
@@ -47,12 +34,54 @@ function callback(success, failure) {
   }, 2000);
 }
 
+function SelfPromise(callback) {
+  //实例化对象
+  //这里要对this进行显示绑定
+  //在构造函数内部this指向哪里？全局对象或者实例化对象？
+  callback.call(this, success, failure);
+}
+
+SelfPromise.prototype.resolved = function(result) {
+  //这里的this就是实例化的SelfPromise对象
+  this.emit('resolved', result);
+}
+
+SelfPromise.prototype.rejected = function(error) {
+  this.emit('rejected', error);
+}
+
+SelfPromise.prototype.then = function(resovled, rejected) {
+  //将this 绑定到具体的实例上，这里的this是隐式调用，
+  //this是promise实例上的方法，所以this就是promise实例。
+  this.on('resolved', function(result) {
+    resovled(result);
+  });
+  this.on('rejected', function(error) {
+    rejected(error);
+  });
+}
+
+util.inherits(SelfPromise, EventEmitter);
+
 var promise = new SelfPromise(callback);
 
-promise.on('resolved', function(result) {
-  console.log('resolved: ', result);
+promise.then(function(result) {
+  console.log(result);
+}, function(error) {  
+  console.log(error);
 });
 
-promise.on('rejected', function(error) {
-  console.log('rejected: ', error);
-});
+/**
+ * 完美定调
+ */
+
+function testPromise(obj) {
+  if (obj && (obj instanceof Object || obj instanceof Function) && obj.then instanceof Function) {
+    console.log('obj is a promise');
+  } else {
+    console.log('obj is not a promise');
+  }
+}
+
+testPromise(promise);
+testPromise({a: 21});
