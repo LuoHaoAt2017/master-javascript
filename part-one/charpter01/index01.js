@@ -1,0 +1,1 @@
+console.log('array fill ', new Array(9).fill()) ;
