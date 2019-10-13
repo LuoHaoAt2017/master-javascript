@@ -4,6 +4,7 @@ import Location from "../views/BOM/location.vue";
 import Navigator from "../views/BOM/navigator.vue";
 import Screen from "../views/BOM/screen.vue";
 import History from "../views/BOM/history.vue";
+import NativeMethods from "../views/JS/native-methods.vue"
 
 const routes = [
     {
@@ -34,6 +35,11 @@ const routes = [
         path: "/history",
         name: "History",
         component: History
+    },
+    {
+        path: "/native-methods",
+        name: "Native Methods",
+        component: NativeMethods
     }
 ];
 

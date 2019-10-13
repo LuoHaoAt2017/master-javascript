@@ -25,6 +25,10 @@
             return {
                 chapters: [
                     {
+                        path: "native-methods",
+                        name: "Native Methods"
+                    },
+                    {
                         path: "/window",
                         name: "Window"
                     },
