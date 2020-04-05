@@ -54,3 +54,46 @@ function main() {
 // registerEvents函数中addEventListener函数的是app的方法，
 // 因此在addEventListener内部调用onClick方法，onClick中的this指向app。
 
+// 显示绑定
+function foo(v) {
+    console.log('x: ', this.x, ' v: ', v);
+}
+
+const obj = {
+    x: 1
+}
+
+const goo = {
+    x: 0
+}
+
+// 显示绑定
+foo.call(obj, 1);
+foo.call(goo, 2);
+
+// 硬绑定
+// bind会返回一个硬编码的新函数
+const temp1 = foo.bind(obj);
+temp1(3);
+const temp2 = foo.bind(goo);
+temp2(4);
+
+// bind的内部实现机理
+function bind(fun, obj) {
+    return function() {
+        return fun.apply(obj, arguments);
+    }
+}
+
+// 很多第三方库会提供一个参数，这个参数是可选的，通常称为上下文。
+// 确保你的回调函数中的this指向你传入的对象。
+
+// new 构造函数调用
+function Circle(x, y, r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    console.log('this ', this);
+}
+
+const circle = new Circle(0, 0, 1);
