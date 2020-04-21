@@ -14,10 +14,6 @@
     "url": "https://github.com/logic911512/master-javascript.git"
   },
   "homepage": "https://github.com/logic911512/master-javascript.git",
-  "devDependencies": {
-
-  },
-  "dependencies": {
-
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
