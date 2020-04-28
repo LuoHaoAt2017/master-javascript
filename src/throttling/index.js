@@ -1,16 +1,27 @@
-function throttling(cb, interval) {
-    let t1 = Date.now();
+function throttling(cb, delay) {
+    let previous = 0;
     return function() {
-        let t2 = Date.now();
-        if (t2 - t1 > interval) {
-            cb();
-            t1 = t2;
+        const context = this;
+        const args = arguments;
+        let current = Date.now();
+        if (current - previous > delay) {
+            cb.apply(context, args);
+            previous = current;
         }
     }
 }
 
-const onScroll = throttling(() => {
-    console.log('scroll...');
+const onInput = throttling(function() {
+    const value = arguments[0].target.value;
+    console.log('scroll...', value);
 }, 1000);
 
-window.addEventListener('scroll', onScroll);
+window.onload = function() {
+    const location = document.getElementById('location');
+    location.addEventListener('input', onInput);
+    
+    const keywords = document.getElementById('keywords');
+    keywords.addEventListener('input', function() {
+        console.log('keywords: ', arguments[0].target.value);
+    });
+}

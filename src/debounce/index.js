@@ -1,17 +1,27 @@
-
-function debounce(cb, interval) {
-    let t1 = Date.now();
-    return function() {
-        let t2 = Date.now();
-        if (t2 - t1 > interval) {
-            cb();
-            t1 = t2;
+function debounce(cb, delay) {
+    let timer = null;
+    return function handleInput() {
+        let args = arguments; // arguments的第一个参数就是evt。
+        let context = this; // this的指向取决于handleInput调用的地方。当input事件触发时，this指向input输入框。
+        if (timer) {
+            clearTimeout(timer);
         }
+        timer = setTimeout(() => {
+            cb.apply(context, args);
+        }, delay);
     }
 }
 
-const onScroll = debounce(() => {
-    console.log('scroll...');
-}, 3000);
+window.onload = function() {
+    const keywords = document.getElementById('keywords');
+    keywords.addEventListener('input',function() {
+        const args = arguments[0];
+        console.log('keywords: ', args.target.value);
+    });
 
-window.addEventListener('scroll', onScroll);
+    const location = document.getElementById('location');
+    location.addEventListener('input', debounce(function() {
+        const args = arguments[0];
+        console.log('location: ', args.target.value);
+    }, 1000));
+}
