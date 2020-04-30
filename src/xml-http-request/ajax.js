@@ -20,7 +20,7 @@ function Ajax(config, cb) {
         }
     }
     xhr.open(config.type, config.url, config.async); // step1: 准备请求 params: method, url, async
-    xhr.send(); // step2: 发送请求
+    xhr.send(null); // step2: 发送请求
 }
 
 function createXHR() {
