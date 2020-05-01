@@ -1,8 +1,5 @@
 function ajax(config, cb) {
     const xhr = createXHR();
-    // 前端设置是否带cookie
-    xhr.withCredentials = true;
-     // step0: 检测状态变化
     xhr.onreadystatechange = function() {
         // statechange=0, 未初始化
         // statechange=1，启动，已经启动open方法。
@@ -10,8 +7,6 @@ function ajax(config, cb) {
         // statechange=3，开始接收到服务器响应。
         // statechange=4，接收到全部响应数据。
         if (xhr.readyState === 1) {
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader('origin', 'http://test-api.truckerpath.com');
         } else if (xhr.readyState === 2) {
             setTimeout(() => {
                 xhr.abort();
@@ -24,8 +19,8 @@ function ajax(config, cb) {
             }
         }
     }
-    xhr.open(config.type, config.url, config.async); // step1: 准备请求 params: method, url, async
-    xhr.send(config.data); // step2: 发送请求
+    xhr.open(config.type, config.url, config.async);
+    xhr.send(config.data);
 }
 
 function createXHR() {
@@ -80,6 +75,16 @@ function useScript() {
     document.body.appendChild(script);
 }
 
+function getHello() {
+    ajax({
+		type: 'get',
+		url: 'http://192.168.1.3:3000/hello', 
+		async: true,
+	}, function(resp) {
+        debugger;
+	});
+}
+
 window.onload = function () {
-    loadtruckerpath();
+    getHello();
 };
