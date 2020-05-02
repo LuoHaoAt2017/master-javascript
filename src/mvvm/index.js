@@ -10,7 +10,7 @@ class Vue {
         this.compile(root)
     }
     // 为响应式对象 data 里的每一个 key 绑定一个观察者对象
-    observe(data){
+    observe(data) {
         Object.keys(data).forEach(key => {
             let obv = new Observer() 
             data["_"+key] = data[key]
@@ -41,7 +41,7 @@ class Vue {
                 this.compile(child)
             }
         });
-    }    
+    } 
 }
 
 class Observer{
