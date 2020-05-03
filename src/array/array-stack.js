@@ -19,9 +19,7 @@ var reverseWords = function(s) {
     return words.join(" ");
 };
 
-
 var str1 = "the sky is blue";
-
 var str2 = "a good   example";
 var res = reverseWords(str2);
 console.log("reverse-words", res);
