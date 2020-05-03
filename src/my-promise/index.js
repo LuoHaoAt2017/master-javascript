@@ -104,7 +104,7 @@ new MyPromise(function(resolve, reject) {
     }, 1000);
 
 }).then(function(res) {
-    //console.log('response: ', res);
+    console.log('response: ', res);
 }).catch(function(err) {
     console.log('error: ', err);
 });
@@ -129,7 +129,7 @@ const p3 = new MyPromise(function(resolve) {
 });
 
 MyPromise.race([p1, p2, p3]).then(function(res) {
-    //console.log('rece: ', res);
+    console.log('rece: ', res);
 });
 MyPromise.all([p1, p2, p3]).then(function(res) {
     console.log('all: ', res);
