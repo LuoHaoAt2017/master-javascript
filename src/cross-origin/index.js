@@ -31,8 +31,9 @@ function createXHR() {
     }
 }
 
-const truckerpath = 'http://test-api.truckerpath.com//jobs-v2-api/v1/third/party/search/record';
+const truckerpath = 'https://api.truckerpath.com//jobs-v2-api/v1/third/party/search/record';
 const jiumo = 'https://www.jiumodiary.com/images/wechat_public_barcode3.gif';
+const baidu = 'http://www.baidu.com';
 
 function loadtruckerpath() {
 	ajax({
@@ -56,7 +57,6 @@ function loadtruckerpath() {
         });
         list.appendChild(fragment);
 		app.appendChild(list);
-		
 	});
 }
 
@@ -86,5 +86,5 @@ function getHello() {
 }
 
 window.onload = function () {
-    getHello();
+    loadtruckerpath();
 };
