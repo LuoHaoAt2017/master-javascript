@@ -3,12 +3,14 @@ window.onload = function() {
 
     function handler(callback, delay) {
         let timer = null;
-        return function(evt) {
+        return function() {
+            const context = this;
+            const args = arguments;
             if (timer) {
                 clearTimeout(timer);
             }
             timer = setTimeout(() => {
-                callback.call(this, evt.target);
+                callback.apply(context, args);
             }, delay);
         }
     };
