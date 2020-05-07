@@ -9,7 +9,7 @@ window.onload = function() {
             if (!timer) {
                 timer = setTimeout(() => {
                     handler.apply(context, args);
-                    clearTimeout(timer);
+                    timer = null;
                 }, delay);
             }
         }
@@ -17,7 +17,7 @@ window.onload = function() {
 
     let handleInput = throttle((evt) => {
         console.log(evt.target.value);
-    }, 2000);
+    }, 1000);
 
     password.addEventListener('input', handleInput);
 }
