@@ -2,9 +2,13 @@ import React from 'react';
 import { HashRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom';
 import Home from '@/views/Home';
 import Prototype from '@/views/prototype';
+<<<<<<< HEAD
 import ScopeClosure from '@/views/scope-closure';
 import Execution from '@/views/execution';
 import ValType from '@/views/val-type';
+=======
+import ScopeClosure from '@/views/scope-closure'
+>>>>>>> origin/qa
 
 const Navs = [
     {
@@ -12,20 +16,26 @@ const Navs = [
         value: '/home'
     },
     {
+<<<<<<< HEAD
         label: '变量和类型',
         value: '/val-type'
     },
     {
+=======
+>>>>>>> origin/qa
         label: '原型',
         value: '/prototype'
     },
     {
         label: '作用域和闭包',
         value: '/scope-closure'
+<<<<<<< HEAD
     },
     {
         label: '执行机制',
         value: '/execution'
+=======
+>>>>>>> origin/qa
     }
 ];
 
@@ -66,12 +76,15 @@ class App extends React.Component {
                             <Route path="/scope-closure">
                                 <ScopeClosure />
                             </Route>
+<<<<<<< HEAD
                             <Route path="/execution">
                                 <Execution />
                             </Route>
                             <Route path="/val-type">
                                 <ValType />
                             </Route>
+=======
+>>>>>>> origin/qa
                             <Redirect to="/home" />
                         </Switch>
 
@@ -87,6 +100,10 @@ class App extends React.Component {
             route: value
         });
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/qa
 }
 
 export default App;
