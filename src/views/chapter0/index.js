@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import doc from '@/docs/原型和原型链/index.md';
+import doc from './index.md';
 
-function Prototype() {
+function Home() {
     return (
         <div className='container'>
             <ReactMarkdown source={doc} escapeHtml={false}/>
@@ -10,4 +10,4 @@ function Prototype() {
     )
 }
 
-export default Prototype;
+export default Home;

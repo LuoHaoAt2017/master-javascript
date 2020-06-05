@@ -1,12 +1,10 @@
 .root {
     padding: 20px;
     .navigator {
-        border: 1px solid #eeeeee;
-        padding: 10px;
         ul {
             display: grid;
             grid-auto-flow: row;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             grid-column-gap: 10px;
             justify-content: space-between;
             align-content: center;
