@@ -82,7 +82,6 @@ class App extends React.Component {
                             </Route>
                             <Redirect to="/chapter1" />
                         </Switch>
-
                     </div>
                     <div className='foot'></div>
                 </div>
