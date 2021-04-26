@@ -13,25 +13,9 @@ const Navs = [
         value: '/chapter0'
     },
     {
-        label: '变量和类型',
+        label: '内联框架',
         value: '/chapter1'
     },
-    {
-        label: '原型和原型链',
-        value: '/chapter2'
-    },
-    {
-        label: '作用域和闭包',
-        value: '/chapter3'
-    },
-    {
-        label: '执行机制',
-        value: '/chapter4'
-    },
-    {
-        label: '语法API',
-        value: '/chapter5'
-    }
 ];
 
 class App extends React.Component {
@@ -67,18 +51,6 @@ class App extends React.Component {
                             </Route>
                             <Route path="/chapter1">
                                 <Chapter1 />
-                            </Route>
-                            <Route path="/chapter2">
-                                <Chapter2 />
-                            </Route>
-                            <Route path="/chapter3">
-                                <Chapter3 />
-                            </Route>
-                            <Route path="/chapter4">
-                                <Chapter4 />
-                            </Route>
-                            <Route path="/chapter5">
-                                <Chapter5 />
                             </Route>
                             <Redirect to="/chapter0"/>
                         </Switch>

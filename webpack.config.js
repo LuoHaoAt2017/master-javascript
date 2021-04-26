@@ -6,7 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        main: path.resolve(__dirname, 'src/main.js')
+        main: path.resolve(__dirname, 'src/main.js'),
+        gene: path.resolve(__dirname, 'modules/gene/index.js'),
+        geology: path.resolve(__dirname, 'modules/geology/index.js')
     },
     output: {
         filename: '[name].bundle.js',
@@ -18,25 +20,18 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 use: ['babel-loader'],
-                include: path.resolve(__dirname, 'src')
             },
             {
                 test: /\.(css|scss)$/,
-                exclude: path.resolve(__dirname, 'node_modules'),
                 use: ["style-loader", "css-loader", 'sass-loader']
             },
             {
                 test: /\.(png|jpg|gif)$/,
                 use: ['url-loader'],
-                exclude: path.resolve(__dirname, 'node_modules'),
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: ['url-loader']
-            },
-            {
-                test: /\.md$/,
-                use: "raw-loader"
             },
         ]
     },
@@ -45,7 +40,23 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './public/index.html'),
             filename: 'index.html',
-            favicon: path.resolve(__dirname, './public/logo.ico')
+            title: '首页',
+            favicon: path.resolve(__dirname, './public/logo.ico'),
+            chunks: ['main']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './public/index.html'),
+            filename: 'gene.html',
+            title: '基因',
+            favicon: path.resolve(__dirname, './public/logo.ico'),
+            chunks: ['gene']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './public/index.html'),
+            filename: 'geology.html',
+            title: '地质',
+            favicon: path.resolve(__dirname, './public/logo.ico'),
+            chunks: ['geology']
         }),
         new CleanWebpackPlugin()
     ],
@@ -55,7 +66,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src')
+            '@': path.resolve(__dirname, 'src'),
+            '#': path.resolve(__dirname, 'common')
         }
     }
 };
